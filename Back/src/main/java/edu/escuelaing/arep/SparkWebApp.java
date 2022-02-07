@@ -13,7 +13,7 @@ public class SparkWebApp {
             response.header("Access-Control-Allow-Origin", "*");
             response.header("Access-Control-Allow-Methods", "GET");
         });
-        
+
         get("/celsius/:temp", "application/json",(req, res) -> {
             float temp = Integer.parseInt(req.params(":temp"));
             JsonObject ret = new JsonObject();
