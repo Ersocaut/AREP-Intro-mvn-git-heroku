@@ -1,13 +1,19 @@
 package edu.escuelaing.arep;
 
-import static spark.Spark.get;
-import static spark.Spark.port;
 import com.google.gson.JsonObject;
+
+import static spark.Spark.*;
 
 public class SparkWebApp {
     public static void main(String[] args) {
         
         port(getPort());
+
+        after((request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Allow-Methods", "GET");
+        });
+        
         get("/celsius/:temp", "application/json",(req, res) -> {
             float temp = Integer.parseInt(req.params(":temp"));
             JsonObject ret = new JsonObject();
