@@ -2,9 +2,22 @@ package edu.escuelaing.arep;
 
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
+
 import static spark.Spark.*;
 
 public class SparkWebApp {
+
+    static void testThreads(){
+        ArrayList<TestThread> threads = new ArrayList<TestThread>();
+        for (int i = 0; i < 5; i++){
+            threads.add(new TestThread());
+        }
+        for (TestThread tt : threads){
+            tt.start();
+        }
+    }
+
     public static void main(String[] args) {
         
         port(getPort());
@@ -31,6 +44,8 @@ public class SparkWebApp {
             ret.addProperty("Status", 200);
             return  ret;
         });
+
+        testThreads();
 
     }
     static int getPort(){
