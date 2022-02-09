@@ -3,18 +3,19 @@ import { api } from './api/api.js';
 const numberInput = document.getElementById('numberInput');
 const selectType = document.getElementById('SelectType');
 const button = document.getElementById('mainButton');
+const text = document.getElementById('resultText');
 
 function toCelsius () {
     api.toCelsius(numberInput.value).then(result => {
         const {Celsius} = result;
-        alert(`${numberInput.value} °F son ${Celsius}°C`);
+        text.textContent = `${numberInput.value} °F son ${Celsius} °C`;
     });
 }
 
 function toFahrenheit () {
     api.toFahrenheit(numberInput.value).then(result => {
         const {Fahrenheit} = result;
-        alert(`${numberInput.value} °C son ${Fahrenheit}°F`);
+        text.textContent = `${numberInput.value} °C son ${Fahrenheit} °F`;
     });
 }
 
